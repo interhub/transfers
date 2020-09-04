@@ -12,25 +12,7 @@ import {useSelector} from "react-redux";
 
 export default function Profile({navigation}: { navigation: StackNavigationProp<any> }) {
     const {user} = useSelector<StateType, StateType>((state => state))
-    const [transferList, setTransferList] = useState<TransferType[]>([]);
-    const getUserAndSet = async () => {
-        await API.getListTransfers()
-            .then((data: ResponseGetTransferList) => {
-                if (data.message) {
-                    return Message(data.message)
-                }
-                setTransferList(data.trans_token)
-            })
-            .catch((e) => {
-                Message(e.message)
-            })
-    }
-    useEffect(() => {
-        getUserAndSet()
-        return navigation.addListener('focus', () => {
-            getUserAndSet()
-        })
-    }, [])
+
 
     if (!user?.name) {
         return null
@@ -49,7 +31,7 @@ export default function Profile({navigation}: { navigation: StackNavigationProp<
             </View>
         </View>
         <BalanceCard balance={user?.balance}/>
-        <TransferList list={transferList}/>
+        <TransferList navigation={navigation} />
     </View>
 }
 

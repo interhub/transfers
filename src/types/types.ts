@@ -54,6 +54,10 @@ export type ResponseGetTransferList = {
     trans_token: TransferType[]
 } & ErrMessage
 
+export type ResponseTransferCreate={
+    trans_token: TransferType
+}& ErrMessage
+
 
 //store
 export type ActionTypes =
