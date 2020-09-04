@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {AsyncStorage, View} from 'react-native';
-import {Button, List} from 'react-native-paper';
+import {Button, List, useTheme} from 'react-native-paper';
 import ShareCode from "./ShareCode";
 import storeTool from "../../vars/storeTool";
 import Message from '../../comps/Message';
@@ -8,6 +8,7 @@ import {useNavigation} from "@react-navigation/native";
 import STORE_NAME from "../../vars/STORE_NAME";
 
 export default function Setting() {
+
 
     const [openNum, setOpenNum] = useState(0);
     const deleteAll=()=>{
@@ -23,6 +24,8 @@ export default function Setting() {
             setOpenNum(0)
         })
     }, [])
+
+    const {colors} = useTheme();
 
     return (
         <View

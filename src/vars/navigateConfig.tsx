@@ -37,9 +37,9 @@ export const getHeaderOptions = (LeftIcon: React.FC | null, RightIcon: React.FC 
 
 export const getHeaderStyle = () => ({
     headerStyle: {
-        elevation: 0,
-        shadowColor: 'rgba(255,255,255,0)',
-        shadowRadius: 0,
+        // elevation: 0,
+        // shadowColor: 'rgba(255,255,255,0)',
+        // shadowRadius: 0,
         height: 85,
         backgroundColor: '#ffffff',
     }

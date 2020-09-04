@@ -1,41 +1,39 @@
-import {StyleSheet, Text, View} from "react-native";
+import {LayoutAnimation, StyleSheet, Text, View} from "react-native";
 import {Modalize} from "react-native-modalize";
-import React, {RefObject} from "react";
-import {TovarType} from "../../types/types";
-import {Avatar, Button, Caption, Headline, List} from "react-native-paper";
-import moment from "moment";
-import storeTool from "../../vars/storeTool";
+import React, {RefObject, useState} from "react";
+import {UserItemType} from "../../types/types";
+import {Avatar, Button, Headline, Paragraph, Caption} from "react-native-paper";
+import {SimpleLineIcons} from '@expo/vector-icons';
 
-export default ({modalizeRef, item, onDelete}: { modalizeRef: RefObject<any>, item: TovarType & {index: number} , onDelete: (index:number)=>void}) => {
+export default ({modalizeRef, item}: { modalizeRef: RefObject<any>, item: UserItemType }) => {
 
+    const [open, setOpen] = useState(false);
 
     return <Modalize
         adjustToContentHeight
         ref={modalizeRef}>
         <View style={styles.container}>
             <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
-                <Avatar.Image size={150} source={{uri: item?.uri}}/>
-                <Text style={{fontSize: 20}}>{item?.name}</Text>
+                <Avatar.Icon style={{backgroundColor: '#eee'}} size={150}
+                             icon={() => <SimpleLineIcons name="user-following" size={50} color="black"/>}/>
+                < Headline>{item?.name}</Headline>
             </View>
             <View>
-                <List.Section title={'Описание'}>
-                    <Caption>{item?.about}</Caption>
-                </List.Section>
-                <List.Section title={'Производитель'}>
-                    <Caption>{item?.made}</Caption>
-                </List.Section>
-                {item?.create && <List.Section title={'Время упаковки'}>
-                    <Caption>{moment(item?.create).format('DD.MM.YY, HH:mm') + ' ч'}</Caption>
-                </List.Section>}
-                <List.Section title={'Стоимость'}>
-                    <Headline>{item?.price + '$'}</Headline>
-                </List.Section>
+                <Caption>Выберите дейтсвие</Caption>
                 <Button
-                    onPress={()=>onDelete(item?.index)}
-                    mode={'outlined'} color={'red'} >
-                    Удалить
+                    onPress={() => {
+                        LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
+                        setOpen(!open)
+                    }}
+                    mode={'outlined'} >
+                    Перевод
                 </Button>
             </View>
+            {open && <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
+                <Avatar.Icon color={'red'} size={150}
+                             icon={() => <SimpleLineIcons name="user-following" size={50} color="black"/>}/>
+                <Text style={{fontSize: 20}}>{item?.name}</Text>
+            </View>}
         </View>
     </Modalize>
 }

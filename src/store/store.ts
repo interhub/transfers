@@ -7,7 +7,7 @@ import {Reducer} from "react";
 const reducer: Reducer<any, ActionTypes> = (state: StateType, action: ActionTypes): StateType => {
     switch (action.type) {
         case ACTION_NAME.SET_LOAD:
-            return {...state};
+            return {...state, load: action.load};
         default:
             return {...state};
     }
