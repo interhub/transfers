@@ -4,7 +4,13 @@ import {THEME_NAME} from "../config/THEME";
 const state: StateType = {
     load: false,
     theme: THEME_NAME.LIGHT,
-    token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6InN0MSIsImVtYWlsIjoic3RlcGFuQG1haWwucnUiLCJpZCI6MzIsImJhbGFuY2UiOjUwMCwiaWF0IjoxNTk5MjA4ODI0LCJleHAiOjE1OTkyMjY4MjR9.7Ocjn1JG0-wt1c_KKsC4PNxGehPIypgaeuWg0umuvyc'
+    user: {
+        balance: 0,
+        email: '',
+        id: 0,
+        name: ''
+    },
+    token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6InN0MiIsImVtYWlsIjoic3RlcGFuMUBtYWlsLnJ1IiwiaWQiOjMzLCJiYWxhbmNlIjo0NzksImlhdCI6MTU5OTIyOTA5MywiZXhwIjoxNTk5MjQ3MDkzfQ.EbcpPAnNdILZmsN38ooNkcrr3z0Hkk9w9IO823lPTEE'
 }
 
 export default state

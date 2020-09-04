@@ -2,6 +2,7 @@ import ACTION_NAME from "./ACTION_NAME";
 import {THEME_NAME} from "../config/THEME";
 import {AsyncStorage} from "react-native";
 import STORE_NAME from "../vars/STORE_NAME";
+import {UserType} from "../types/types";
 
 
 export interface setLoadActionType {
@@ -28,4 +29,17 @@ export const setThemeAction = (theme: THEME_NAME): setThemeActionType => {
         theme
     };
 };
+
+export interface setUserActionType {
+    type: typeof ACTION_NAME.SET_USER
+    user: UserType
+}
+
+export const setUserAction = (user: UserType): setUserActionType => {
+    return {
+        type: ACTION_NAME.SET_USER,
+        user
+    };
+};
+
 

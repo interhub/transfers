@@ -3,26 +3,17 @@ import {StyleSheet, View} from "react-native";
 import {Avatar, Caption, Headline} from "react-native-paper";
 import {SimpleLineIcons} from "@expo/vector-icons";
 import {StackNavigationProp} from "@react-navigation/stack";
-import {ResponseGetTransferList, ResponseGetUser, TransferType, UserType} from "../../types/types";
+import {ResponseGetTransferList, StateType, TransferType} from "../../types/types";
 import API from "../../config/API";
 import BalanceCard from "./BalanseCard";
 import TransferList from "./TranferList";
 import Message from "../../comps/Message";
+import {useSelector} from "react-redux";
 
 export default function Profile({navigation}: { navigation: StackNavigationProp<any> }) {
-    const [user, setUser] = useState<UserType | null>(null);
+    const {user} = useSelector<StateType, StateType>((state => state))
     const [transferList, setTransferList] = useState<TransferType[]>([]);
     const getUserAndSet = async () => {
-        await API.getUserInfo()
-            .then((data: ResponseGetUser) => {
-                if (data.message) {
-                    return Message(data.message)
-                }
-                setUser(data.user_info_token)
-            })
-            .catch((e) => {
-                Message(e.message)
-            })
         await API.getListTransfers()
             .then((data: ResponseGetTransferList) => {
                 if (data.message) {
@@ -41,7 +32,7 @@ export default function Profile({navigation}: { navigation: StackNavigationProp<
         })
     }, [])
 
-    if (!user) {
+    if (!user?.name) {
         return null
     }
 
@@ -50,7 +41,7 @@ export default function Profile({navigation}: { navigation: StackNavigationProp<
             <Avatar.Icon style={{backgroundColor: '#eee'}}
                          size={150}
                          icon={(props) => <SimpleLineIcons name="user-following"  {...props} size={50}/>}/>
-            <View style={{alignItems: 'flex-end'}}>
+            <View style={{alignItems: 'flex-end', paddingRight: 20}}>
                 <Headline>
                     {user?.name}
                 </Headline>
@@ -58,7 +49,7 @@ export default function Profile({navigation}: { navigation: StackNavigationProp<
             </View>
         </View>
         <BalanceCard balance={user?.balance}/>
-        <TransferList list={[]}/>
+        <TransferList list={transferList}/>
     </View>
 }
 

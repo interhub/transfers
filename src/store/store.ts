@@ -10,6 +10,8 @@ const reducer: Reducer<any, ActionTypes> = (state: StateType, action: ActionType
             return {...state, load: action.load};
         case ACTION_NAME.SET_THEME:
             return {...state, theme: action.theme};
+        case ACTION_NAME.SET_USER:
+            return {...state, user: action.user};
         default:
             return {...state};
     }

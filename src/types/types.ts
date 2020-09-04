@@ -1,10 +1,11 @@
-import {setLoadActionType, setThemeActionType} from "../store/actions";
+import {setLoadActionType, setThemeActionType, setUserActionType} from "../store/actions";
 import {THEME_NAME} from "../config/THEME";
 
 export type StateType = {
     load: boolean
     theme: THEME_NAME
     token: TokenType
+    user: UserType
 }
 
 export type TovarType = {
@@ -57,4 +58,5 @@ export type ResponseGetTransferList = {
 //store
 export type ActionTypes =
     setLoadActionType |
-    setThemeActionType
+    setThemeActionType |
+    setUserActionType

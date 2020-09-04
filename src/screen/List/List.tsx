@@ -21,7 +21,6 @@ export default function ListTovars() {
     const getAndSetList = async () => {
         API.getUserListByString()
             .then((data: ResponseGetUserList) => {
-                console.warn(data)
                 if (data.message) {
                     return Message(data.message)
                 }

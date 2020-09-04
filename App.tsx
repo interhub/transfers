@@ -14,7 +14,7 @@ import Loader from './src/comps/Loader';
 import Profile from "./src/screen/Profile/Profile";
 import {Provider as PaperProvider} from 'react-native-paper';
 import THEME, {THEME_NAME} from "./src/config/THEME";
-import setStorageSetting from "./src/config/setStorageSetting";
+import ConfigComponent from "./src/config/ConfigComponent";
 
 if (
     Platform.OS === "android" &&
@@ -28,9 +28,7 @@ const Stack = createStackNavigator();
 function App() {
     const {theme: theme_name} = useSelector<StateType, StateType>((state => state))
     const theme: any = THEME[theme_name] || THEME[THEME_NAME.LIGHT]
-    useEffect(()=>{
-        setStorageSetting()
-    },[])
+
     return (
         <NavigationContainer theme={theme}>
             <PaperProvider theme={theme}>
@@ -42,7 +40,7 @@ function App() {
                             ...getHeaderOptions(
                                 () => <SettingBtn/>,
                                 () => <ProfileBtn/>,
-                                ()=><BalanseBtn/>
+                                () => <BalanseBtn/>
                             ),
                             ...optionAnimationLeft(true),
                             ...getHeaderStyle()
@@ -71,20 +69,9 @@ function App() {
                             ...optionAnimationLeft(true),
                             ...getHeaderStyle()
                         }}/>
-                    {/*<Stack.Screen*/}
-                    {/*    name={SCREEN_NAME.START}*/}
-                    {/*    component={Start}*/}
-                    {/*    options={{*/}
-                    {/*        ...getHeaderOptions(*/}
-                    {/*            () => <SettingBtn/>,*/}
-                    {/*            () => <ScanBtn/>,*/}
-                    {/*            null*/}
-                    {/*        ),*/}
-                    {/*        ...optionAnimationLeft(true),*/}
-                    {/*        ...getHeaderStyle()*/}
-                    {/*    }}/>*/}
                 </Stack.Navigator>
                 <Loader/>
+                <ConfigComponent/>
             </PaperProvider>
         </NavigationContainer>
 

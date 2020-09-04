@@ -3,10 +3,11 @@ import React, {useEffect, useState} from 'react'
 import {Feather, FontAwesome5, MaterialCommunityIcons} from '@expo/vector-icons';
 import {useNavigation} from "@react-navigation/native";
 import SCREEN_NAME from "../vars/SCREEN_NAME";
-import {ResponseGetUser} from "../types/types";
+import {ResponseGetUser, StateType} from "../types/types";
 import API from "../config/API";
 import Message from "./Message";
 import {Title} from "react-native-paper";
+import {useSelector} from "react-redux";
 
 const ICON_SIZE = 27
 
@@ -39,11 +40,11 @@ export const ProfileBtn = () => {
 
 export const BalanseBtn = () => {
     const navigation = useNavigation();
-    const [balanse, setBalanse] = useState(0);
+    const {user} = useSelector<StateType, StateType>((state => state))
 
     return <TouchableOpacity onPress={() => {
         navigation.navigate(SCREEN_NAME.PROFILE)
     }}>
-        <Title>{balanse}$</Title>
+        <Title>{user?.balance}$</Title>
     </TouchableOpacity>
 }
