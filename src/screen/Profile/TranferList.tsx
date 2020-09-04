@@ -10,7 +10,7 @@ const TransferList = ({list,}: { list: TransferType[] }) => {
                 return <Caption>Последние операции</Caption>
             }}
             ListEmptyComponent={()=>{
-                return <Caption style={{marginTop:'auto'}} >Отсутствуют...</Caption>
+                return <Caption >Отсутствуют</Caption>
             }}
             data={list}
             renderItem={({item, index}) => {

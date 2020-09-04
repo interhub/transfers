@@ -12,8 +12,8 @@ import Message from "../../comps/Message";
 export default function Profile({navigation}: { navigation: StackNavigationProp<any> }) {
     const [user, setUser] = useState<UserType | null>(null);
     const [transferList, setTransferList] = useState<TransferType[]>([]);
-    const getUserAndSet = () => {
-        API.getUserInfo()
+    const getUserAndSet = async () => {
+        await API.getUserInfo()
             .then((data: ResponseGetUser) => {
                 if (data.message) {
                     return Message(data.message)
@@ -23,7 +23,7 @@ export default function Profile({navigation}: { navigation: StackNavigationProp<
             .catch((e) => {
                 Message(e.message)
             })
-        API.getListTransfers()
+        await API.getListTransfers()
             .then((data: ResponseGetTransferList) => {
                 if (data.message) {
                     return Message(data.message)
@@ -64,11 +64,11 @@ export default function Profile({navigation}: { navigation: StackNavigationProp<
 
 const styles = StyleSheet.create({
     container: {
-        flex:1,
+        flex: 1,
         padding: 10,
     },
     row: {
-        flex:1,
+        flex: 1,
         flexDirection: 'row',
         alignItems: "center",
         justifyContent: 'space-between'

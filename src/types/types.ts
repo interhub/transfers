@@ -47,6 +47,8 @@ export type ResponseGetUser = {
     user_info_token: UserType
 } & ErrMessage
 
+export type ResponseGetUserList = UserItemType[] & ErrMessage
+
 export type ResponseGetTransferList = {
     trans_token: TransferType[]
 } & ErrMessage

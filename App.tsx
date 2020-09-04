@@ -9,7 +9,7 @@ import SCREEN_NAME from "./src/vars/SCREEN_NAME";
 import List from "./src/screen/List/List";
 import {StateType} from "./src/types/types";
 import Setting from "./src/screen/Setting/Setting";
-import {ListBtn, ProfileBtn, SettingBtn} from './src/comps/HeaderBtns'
+import {BalanseBtn, ListBtn, ProfileBtn, SettingBtn} from './src/comps/HeaderBtns'
 import Loader from './src/comps/Loader';
 import Profile from "./src/screen/Profile/Profile";
 import {Provider as PaperProvider} from 'react-native-paper';
@@ -42,7 +42,7 @@ function App() {
                             ...getHeaderOptions(
                                 () => <SettingBtn/>,
                                 () => <ProfileBtn/>,
-                                null
+                                ()=><BalanseBtn/>
                             ),
                             ...optionAnimationLeft(true),
                             ...getHeaderStyle()

@@ -1,8 +1,12 @@
 import {TouchableOpacity} from "react-native"
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import {Feather, FontAwesome5, MaterialCommunityIcons} from '@expo/vector-icons';
 import {useNavigation} from "@react-navigation/native";
 import SCREEN_NAME from "../vars/SCREEN_NAME";
+import {ResponseGetUser} from "../types/types";
+import API from "../config/API";
+import Message from "./Message";
+import {Title} from "react-native-paper";
 
 const ICON_SIZE = 27
 
@@ -30,5 +34,16 @@ export const ProfileBtn = () => {
         navigation.navigate(SCREEN_NAME.PROFILE)
     }}>
         <FontAwesome5 name="user-circle" size={ICON_SIZE} color="black"/>
+    </TouchableOpacity>
+}
+
+export const BalanseBtn = () => {
+    const navigation = useNavigation();
+    const [balanse, setBalanse] = useState(0);
+
+    return <TouchableOpacity onPress={() => {
+        navigation.navigate(SCREEN_NAME.PROFILE)
+    }}>
+        <Title>{balanse}$</Title>
     </TouchableOpacity>
 }

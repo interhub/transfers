@@ -25,13 +25,16 @@ export const getHeaderOptions = (LeftIcon: React.FC | null, RightIcon: React.FC 
     headerLeft: LeftIcon ? () => (
         <LeftIcon/>
     ) : null,
+    headerTitle: CenterIcon ? (
+        () => <CenterIcon/>
+    ) : null,
+
     headerLeftContainerStyle: {
         paddingLeft: 20,
     },
     headerRightContainerStyle: {
         paddingRight: 20
     },
-    headerTitle: CenterIcon ? () => <CenterIcon/> : null,
 
 })
 
