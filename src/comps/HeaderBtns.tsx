@@ -1,11 +1,9 @@
 import {TouchableOpacity} from "react-native"
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import {Feather, FontAwesome5, MaterialCommunityIcons} from '@expo/vector-icons';
 import {useNavigation} from "@react-navigation/native";
 import SCREEN_NAME from "../vars/SCREEN_NAME";
-import {ResponseGetUser, StateType} from "../types/types";
-import API from "../config/API";
-import Message from "./Message";
+import {StateType} from "../types/types";
 import {Title} from "react-native-paper";
 import {useSelector} from "react-redux";
 
@@ -47,4 +45,8 @@ export const BalanseBtn = () => {
     }}>
         <Title>{user?.balance}$</Title>
     </TouchableOpacity>
+}
+
+export const TitleAppBtn = () => {
+    return <Title>TRANSFER APP</Title>
 }

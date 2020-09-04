@@ -4,7 +4,7 @@ import {Button, List} from 'react-native-paper';
 import {useNavigation} from "@react-navigation/native";
 import {THEME_NAME} from "../../config/THEME";
 import {useDispatch} from 'react-redux';
-import {setThemeAction} from "../../store/actions";
+import {setThemeAction, setTokenAction} from "../../store/actions";
 import {Feather, Ionicons, MaterialIcons} from '@expo/vector-icons';
 import API from "../../config/API";
 
@@ -23,6 +23,10 @@ export default function Setting() {
 
     const changeTheme = (theme_name: THEME_NAME) => {
         dispatch(setThemeAction(theme_name))
+    }
+
+    const logOut=()=>{
+        dispatch(setTokenAction(''))
     }
 
     return (
@@ -61,12 +65,7 @@ export default function Setting() {
                         setOpenNum(openNum === 3 ? 0 : 3)
                     }}>
                     <Button
-                        onPress={() => {
-                            API.createTransfer({name: 'st1', amount: 206})
-                                .then((data) => {
-                                    console.warn(data, 'RES')
-                                })
-                        }}
+                        onPress={logOut}
                     >Выход</Button>
                 </List.Accordion>
             </List.Section>

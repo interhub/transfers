@@ -1,9 +1,9 @@
 enum SCREEN_NAME {
-    START = 'START',
     LIST = 'LIST',
-    SCAN = 'SCAN',
     SETTING = 'SETTING',
-    PROFILE = 'PROFILE'
+    PROFILE = 'PROFILE',
+    LOGIN = 'LOGIN',
+    EMPTY = 'EMPTY',
 }
 
 export default SCREEN_NAME;

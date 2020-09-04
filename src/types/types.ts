@@ -1,4 +1,4 @@
-import {setLoadActionType, setThemeActionType, setUserActionType} from "../store/actions";
+import {setLoadActionType, setThemeActionType, setTokenActionType, setUserActionType} from "../store/actions";
 import {THEME_NAME} from "../config/THEME";
 
 export type StateType = {
@@ -58,9 +58,14 @@ export type ResponseTransferCreate={
     trans_token: TransferType
 }& ErrMessage
 
+export type ResponseGetToken={
+    id_token: TokenType
+}& ErrMessage
+
 
 //store
 export type ActionTypes =
     setLoadActionType |
     setThemeActionType |
-    setUserActionType
+    setUserActionType |
+    setTokenActionType

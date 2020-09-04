@@ -28,9 +28,9 @@ class API {
     private async getResponse(res: any) {
         this.setLoading(false)
         try {
-            if (res.status === 200) {
+            if (res.status < 400) {
                 return res.json()
-            }else{
+            } else {
                 return {message: await res.text()}
             }
         } catch (e) {

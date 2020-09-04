@@ -2,7 +2,7 @@ import ACTION_NAME from "./ACTION_NAME";
 import {THEME_NAME} from "../config/THEME";
 import {AsyncStorage} from "react-native";
 import STORE_NAME from "../vars/STORE_NAME";
-import {UserType} from "../types/types";
+import {TokenType, UserType} from "../types/types";
 
 
 export interface setLoadActionType {
@@ -41,5 +41,20 @@ export const setUserAction = (user: UserType): setUserActionType => {
         user
     };
 };
+
+export interface setTokenActionType {
+    type: typeof ACTION_NAME.SET_TOKEN
+    token: TokenType
+}
+
+export const setTokenAction = (token: TokenType): setTokenActionType => {
+    token ? AsyncStorage.setItem(STORE_NAME.TOKEN, token) : AsyncStorage.removeItem(STORE_NAME.TOKEN)
+    return {
+        type: ACTION_NAME.SET_TOKEN,
+        token
+    };
+};
+
+
 
 

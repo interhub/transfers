@@ -1,4 +1,5 @@
 export default {
     LIST:'LIST',
-    THEME: 'THEME'
+    THEME: 'THEME',
+    TOKEN: 'TOKEN'
 }

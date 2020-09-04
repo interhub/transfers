@@ -10,7 +10,7 @@ const state: StateType = {
         id: 0,
         name: ''
     },
-    token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6InN0MiIsImVtYWlsIjoic3RlcGFuMUBtYWlsLnJ1IiwiaWQiOjMzLCJiYWxhbmNlIjo0NzksImlhdCI6MTU5OTIyOTA5MywiZXhwIjoxNTk5MjQ3MDkzfQ.EbcpPAnNdILZmsN38ooNkcrr3z0Hkk9w9IO823lPTEE'
+    token: ''
 }
 
 export default state
