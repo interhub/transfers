@@ -1,7 +1,6 @@
 enum ACTION_NAME {
     SET_LOAD = 'SET_LOAD',
-    ADD_CARD = 'ADD_CARD',
-    REMOVE_CARD = 'REMOVE_CARD'
+    SET_THEME = 'SET_THEME',
 }
 
 export default ACTION_NAME;

@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "qr-shop",
-    "slug": "qr-shop",
+    "name": "transfers",
+    "slug": "transfers",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

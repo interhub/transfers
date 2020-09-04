@@ -7,9 +7,12 @@ import {SimpleLineIcons} from '@expo/vector-icons';
 
 export default ({modalizeRef, item}: { modalizeRef: RefObject<any>, item: UserItemType }) => {
 
-    const [open, setOpen] = useState(false);
+    const [openTransfer, setOpenTransfer] = useState(false);
 
     return <Modalize
+        onClose={()=>{
+            setOpenTransfer(false)
+        }}
         adjustToContentHeight
         ref={modalizeRef}>
         <View style={styles.container}>
@@ -23,13 +26,13 @@ export default ({modalizeRef, item}: { modalizeRef: RefObject<any>, item: UserIt
                 <Button
                     onPress={() => {
                         LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
-                        setOpen(!open)
+                        setOpenTransfer(!openTransfer)
                     }}
                     mode={'outlined'} >
                     Перевод
                 </Button>
             </View>
-            {open && <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
+            {openTransfer  && <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
                 <Avatar.Icon color={'red'} size={150}
                              icon={() => <SimpleLineIcons name="user-following" size={50} color="black"/>}/>
                 <Text style={{fontSize: 20}}>{item?.name}</Text>

@@ -1,3 +1,4 @@
 export default {
-    LIST:'LIST'
+    LIST:'LIST',
+    THEME: 'THEME'
 }

@@ -4,7 +4,7 @@ import {useNavigation} from "@react-navigation/native";
 import {StateType, UserItemType} from "../../types/types";
 import {Button, List} from "react-native-paper";
 import SCREEN_NAME from "../../vars/SCREEN_NAME";
-import ListItem from '../../comps/Listitem';
+import ListItem from './Listitem';
 import {useDispatch, useSelector} from "react-redux";
 import {setLoadAction} from "../../store/actions";
 import {Modalize} from "react-native-modalize";

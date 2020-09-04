@@ -8,6 +8,8 @@ const reducer: Reducer<any, ActionTypes> = (state: StateType, action: ActionType
     switch (action.type) {
         case ACTION_NAME.SET_LOAD:
             return {...state, load: action.load};
+        case ACTION_NAME.SET_THEME:
+            return {...state, theme: action.theme};
         default:
             return {...state};
     }

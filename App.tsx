@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Platform, UIManager} from 'react-native';
 import {Provider, useSelector} from "react-redux";
 import store from "./src/store/store";
@@ -12,7 +12,9 @@ import Setting from "./src/screen/Setting/Setting";
 import {ListBtn, ProfileBtn, SettingBtn} from './src/comps/HeaderBtns'
 import Loader from './src/comps/Loader';
 import Profile from "./src/screen/Profile/Profile";
-import {Provider as PaperProvider, DefaultTheme} from 'react-native-paper';
+import {Provider as PaperProvider} from 'react-native-paper';
+import THEME, {THEME_NAME} from "./src/config/THEME";
+import setStorageSetting from "./src/config/setStorageSetting";
 
 if (
     Platform.OS === "android" &&
@@ -22,86 +24,68 @@ if (
 }
 
 const Stack = createStackNavigator();
-// const theme = {
-//     ...DefaultTheme,
-//     roundness: 2,
-//     colors: {
-//         ...DefaultTheme.colors,
-//         primary: '#3498db',
-//         accent: '#f1c40f',
-//     },
-// };
-const theme = {
-    ...DefaultTheme,
-    roundness: 2,
-    colors: {
-        ...DefaultTheme.colors,
-        primary: 'rgb(4,20,100)',
-        background: 'rgb(107,188,245)',
-        card: 'rgb(255, 255, 255)',
-        text: 'rgb(28, 28, 30)',
-        border: 'rgb(199, 199, 204)',
-        notification: 'rgb(255, 69, 58)',
-        accent: '#f1c40f',
-    },
-};
 
 function App() {
-    const {load} = useSelector<StateType, StateType>((state => state))
-
+    const {theme: theme_name} = useSelector<StateType, StateType>((state => state))
+    const theme: any = THEME[theme_name] || THEME[THEME_NAME.LIGHT]
+    useEffect(()=>{
+        setStorageSetting()
+    },[])
     return (
-        <NavigationContainer theme={theme} >
-            <Stack.Navigator initialRouteName={SCREEN_NAME.PROFILE}>
-                <Stack.Screen
-                    name={SCREEN_NAME.LIST}
-                    component={List}
-                    options={{
-                        ...getHeaderOptions(
-                            () => <SettingBtn/>,
-                            () => <ProfileBtn/>,
-                            null
-                        ),
-                        ...optionAnimationLeft(true),
-                        ...getHeaderStyle()
-                    }}/>
-                <Stack.Screen
-                    name={SCREEN_NAME.PROFILE}
-                    component={Profile}
-                    options={{
-                        ...getHeaderOptions(
-                            () => <SettingBtn/>,
-                            () => <ListBtn/>,
-                            null
-                        ),
-                        ...optionAnimationLeft(true),
-                        ...getHeaderStyle()
-                    }}/>
-                <Stack.Screen
-                    name={SCREEN_NAME.SETTING}
-                    component={Setting}
-                    options={{
-                        ...getHeaderOptions(
-                            () => <ListBtn/>,
-                            () => <ProfileBtn/>,
-                            null
-                        ),
-                        ...optionAnimationLeft(true),
-                        ...getHeaderStyle()
-                    }}/>
-                {/*<Stack.Screen*/}
-                {/*    name={SCREEN_NAME.START}*/}
-                {/*    component={Start}*/}
-                {/*    options={{*/}
-                {/*        ...getHeaderOptions(*/}
-                {/*            () => <SettingBtn/>,*/}
-                {/*            () => <ScanBtn/>,*/}
-                {/*            null*/}
-                {/*        ),*/}
-                {/*        ...optionAnimationLeft(true),*/}
-                {/*        ...getHeaderStyle()*/}
-                {/*    }}/>*/}
-            </Stack.Navigator>
-            <Loader/>
+        <NavigationContainer theme={theme}>
+            <PaperProvider theme={theme}>
+                <Stack.Navigator initialRouteName={SCREEN_NAME.PROFILE}>
+                    <Stack.Screen
+                        name={SCREEN_NAME.LIST}
+                        component={List}
+                        options={{
+                            ...getHeaderOptions(
+                                () => <SettingBtn/>,
+                                () => <ProfileBtn/>,
+                                null
+                            ),
+                            ...optionAnimationLeft(true),
+                            ...getHeaderStyle()
+                        }}/>
+                    <Stack.Screen
+                        name={SCREEN_NAME.PROFILE}
+                        component={Profile}
+                        options={{
+                            ...getHeaderOptions(
+                                () => <SettingBtn/>,
+                                () => <ListBtn/>,
+                                null
+                            ),
+                            ...optionAnimationLeft(true),
+                            ...getHeaderStyle()
+                        }}/>
+                    <Stack.Screen
+                        name={SCREEN_NAME.SETTING}
+                        component={Setting}
+                        options={{
+                            ...getHeaderOptions(
+                                () => <ListBtn/>,
+                                () => <ProfileBtn/>,
+                                null
+                            ),
+                            ...optionAnimationLeft(true),
+                            ...getHeaderStyle()
+                        }}/>
+                    {/*<Stack.Screen*/}
+                    {/*    name={SCREEN_NAME.START}*/}
+                    {/*    component={Start}*/}
+                    {/*    options={{*/}
+                    {/*        ...getHeaderOptions(*/}
+                    {/*            () => <SettingBtn/>,*/}
+                    {/*            () => <ScanBtn/>,*/}
+                    {/*            null*/}
+                    {/*        ),*/}
+                    {/*        ...optionAnimationLeft(true),*/}
+                    {/*        ...getHeaderStyle()*/}
+                    {/*    }}/>*/}
+                </Stack.Navigator>
+                <Loader/>
+            </PaperProvider>
         </NavigationContainer>
 
     );
@@ -109,11 +93,8 @@ function App() {
 
 export default () =>
     <Provider store={store}>
-        <PaperProvider theme={theme}>
-            <App/>
-        </PaperProvider>
+        <App/>
     </Provider>
-
 
 
 // const styles = StyleSheet.create({
