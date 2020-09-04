@@ -1,26 +1,17 @@
 import React, {useEffect, useState} from 'react';
 import {View} from 'react-native';
 import {Button, List} from 'react-native-paper';
-import ShareCode from "./ShareCode";
-import storeTool from "../../vars/storeTool";
-import Message from '../../comps/Message';
 import {useNavigation} from "@react-navigation/native";
 import {THEME_NAME} from "../../config/THEME";
 import {useDispatch} from 'react-redux';
 import {setThemeAction} from "../../store/actions";
-import {Feather, Ionicons} from '@expo/vector-icons';
-import { MaterialIcons } from '@expo/vector-icons';
+import {Feather, Ionicons, MaterialIcons} from '@expo/vector-icons';
+import API from "../../config/API";
 
 export default function Setting() {
 
 
     const [openNum, setOpenNum] = useState(0);
-    const deleteAll = () => {
-        storeTool.clearList()
-            .then(() => {
-                Message('Успешно удалено')
-            })
-    }
 
     const navigation = useNavigation();
     const dispatch = useDispatch()
@@ -63,13 +54,19 @@ export default function Setting() {
                 <List.Accordion
                     title="Выйти из аккаунта"
                     left={(props: any) => <List.Icon {...props}
-                                                     icon={() => <MaterialIcons name="exit-to-app" {...props} size={24} />}/>}
+                                                     icon={() => <MaterialIcons name="exit-to-app" {...props}
+                                                                                size={24}/>}/>}
                     expanded={openNum === 3}
                     onPress={() => {
                         setOpenNum(openNum === 3 ? 0 : 3)
                     }}>
                     <Button
-                        onPress={deleteAll}
+                        onPress={() => {
+                            API.createTransfer({name: 'st1', amount: 206})
+                                .then((data) => {
+                                    console.warn(data, 'RES')
+                                })
+                        }}
                     >Выход</Button>
                 </List.Accordion>
             </List.Section>

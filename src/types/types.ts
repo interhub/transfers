@@ -1,9 +1,10 @@
 import {setLoadActionType, setThemeActionType} from "../store/actions";
 import {THEME_NAME} from "../config/THEME";
 
-export type StateType={
+export type StateType = {
     load: boolean
     theme: THEME_NAME
+    token: TokenType
 }
 
 export type TovarType = {
@@ -20,25 +21,38 @@ export type TovarType = {
 export type TokenType = string
 
 
-export type UserType ={
+export type UserType = {
     "id": number
     "name": string
     "email": string
     "balance": number
 }
 
-export type UserItemType={
+export type UserItemType = {
     id: number
     name: string
 }
 
-//respons
+export type TransferType = {
+    id: number
+    date: string
+    username: string
+    amount: number
+    balance: number
+}
+
+//response
+export type ErrMessage = {message: string}
 export type ResponseGetUser = {
     user_info_token: UserType
-}
+} & ErrMessage
+
+export type ResponseGetTransferList = {
+    trans_token: TransferType[]
+} & ErrMessage
 
 
 //store
-export type ActionTypes=
+export type ActionTypes =
     setLoadActionType |
     setThemeActionType

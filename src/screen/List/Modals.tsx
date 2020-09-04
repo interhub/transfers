@@ -18,7 +18,7 @@ export default ({modalizeRef, item}: { modalizeRef: RefObject<any>, item: UserIt
         <View style={styles.container}>
             <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
                 <Avatar.Icon style={{backgroundColor: '#eee'}} size={150}
-                             icon={() => <SimpleLineIcons name="user-following" size={50} color="black"/>}/>
+                             icon={(props) => <SimpleLineIcons name="user-following"  {...props} size={50} />}/>
                 < Headline>{item?.name}</Headline>
             </View>
             <View>
